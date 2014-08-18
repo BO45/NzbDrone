@@ -14,17 +14,13 @@ namespace NzbDrone.Core.Indexers
 
     public class IndexerFactory : ProviderFactory<IIndexer, IndexerDefinition>, IIndexerFactory
     {
-        private readonly INewznabTestService _newznabTestService;
-
         public IndexerFactory(IIndexerRepository providerRepository,
                               IEnumerable<IIndexer> providers,
                               IContainer container, 
-                              IEventAggregator eventAggregator, 
-                              INewznabTestService newznabTestService, 
+                              IEventAggregator eventAggregator,
                               Logger logger)
             : base(providerRepository, providers, container, eventAggregator, logger)
         {
-            _newznabTestService = newznabTestService;
         }
 
         protected override void InitializeProviders()
@@ -37,11 +33,12 @@ namespace NzbDrone.Core.Indexers
             return base.Active().Where(c => c.Enable).ToList();
         }
 
-        protected override IndexerDefinition GetProviderCharacteristics(IIndexer provider, IndexerDefinition definition)
+        public override IndexerDefinition GetProviderCharacteristics(IIndexer provider, IndexerDefinition definition)
         {
             definition = base.GetProviderCharacteristics(provider, definition);
 
             definition.Protocol = provider.Protocol;
+            definition.SupportsSearching = provider.SupportsSearching;
 
             return definition;
         }

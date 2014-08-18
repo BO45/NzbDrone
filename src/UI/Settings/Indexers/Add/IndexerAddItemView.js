@@ -25,14 +25,14 @@ define([
         _addPreset: function (e) {
         
             var presetName = $(e.target).closest('.x-preset').attr('data-id');
-
             var presetData = _.where(this.model.get('presets'), {name: presetName})[0];
             
             this.model.set(presetData);
             
             this.model.set({
-                id         : undefined,
-                enable     : true
+                id           : undefined,
+                enableRss    : true,
+                enableSearch : true
             });
 
             var editView = new EditView({ model: this.model, targetCollection: this.targetCollection });
@@ -45,8 +45,9 @@ define([
             }
 
             this.model.set({
-                id         : undefined,
-                enable     : true
+                id           : undefined,
+                enableRss    : true,
+                enableSearch : true
             });
 
             var editView = new EditView({ model: this.model, targetCollection: this.targetCollection });
