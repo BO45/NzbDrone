@@ -4,13 +4,15 @@
     </div>
 
     <div class="settings">
-        {{#if enableRss}}
-            <span class="label label-success">RSS</span>
-        {{else}}
-            <span class="label label-default">RSS</span>
+        {{#if supportsRss}}
+            {{#if enableRss}}
+                <span class="label label-success">RSS</span>
+            {{else}}
+                <span class="label label-default">RSS</span>
+            {{/if}}
         {{/if}}
 
-        {{#if supportsSearching}}
+        {{#if supportsSearch}}
             {{#if enableSearch}}
                 <span class="label label-success">Search</span>
             {{else}}

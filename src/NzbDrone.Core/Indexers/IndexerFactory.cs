@@ -9,7 +9,8 @@ namespace NzbDrone.Core.Indexers
 {
     public interface IIndexerFactory : IProviderFactory<IIndexer, IndexerDefinition>
     {
-
+        List<IIndexer> RssEnabled();
+        List<IIndexer> SearchEnabled();
     }
 
     public class IndexerFactory : ProviderFactory<IIndexer, IndexerDefinition>, IIndexerFactory
@@ -38,9 +39,20 @@ namespace NzbDrone.Core.Indexers
             definition = base.GetProviderCharacteristics(provider, definition);
 
             definition.Protocol = provider.Protocol;
-            definition.SupportsSearching = provider.SupportsSearching;
+            definition.SupportsRss = provider.SupportsRss;
+            definition.SupportsSearch = provider.SupportsSearch;
 
             return definition;
         }
+
+        public List<IIndexer> RssEnabled()
+        {
+            return GetAvailableProviders().Where(n => ((IndexerDefinition)n.Definition).EnableRss).ToList();
+        }
+
+        public List<IIndexer> SearchEnabled()
+        {
+            return GetAvailableProviders().Where(n => ((IndexerDefinition)n.Definition).EnableSearch).ToList();
+        }        
     }
 }

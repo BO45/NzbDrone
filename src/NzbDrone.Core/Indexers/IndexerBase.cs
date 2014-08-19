@@ -25,7 +25,7 @@ namespace NzbDrone.Core.Indexers
                 {
                     Name = GetType().Name,
                     EnableRss = config.Validate().IsValid,
-                    EnableSearch = config.Validate().IsValid && SupportsSearching,
+                    EnableSearch = config.Validate().IsValid && SupportsSearch,
                     Implementation = GetType().Name,
                     Settings = config
                 };
@@ -38,7 +38,7 @@ namespace NzbDrone.Core.Indexers
         public abstract DownloadProtocol Protocol { get; }
 
         public virtual Boolean SupportsRss { get { return true; } }
-        public virtual Boolean SupportsSearching { get { return true; } }
+        public virtual Boolean SupportsSearch { get { return true; } }
         public virtual Int32 SupportedPageSize { get { return 0; } }
         public bool SupportsPaging { get { return SupportedPageSize > 0; } }
 

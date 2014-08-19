@@ -8,7 +8,8 @@ namespace NzbDrone.Core.Indexers
         public Boolean EnableRss { get; set; }
         public Boolean EnableSearch { get; set; }
         public DownloadProtocol Protocol { get; set; }
-        public Boolean SupportsSearching { get; set; }
+        public Boolean SupportsRss { get; set; }
+        public Boolean SupportsSearch { get; set; }
 
         public override Boolean Enable
         {

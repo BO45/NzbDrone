@@ -29,7 +29,7 @@ namespace NzbDrone.Core.Test.HealthCheck.Checks
         public void should_return_warning_when_only_enabled_indexer_is_wombles()
         {
             var indexer = Mocker.GetMock<IIndexer>();
-            indexer.SetupGet(s => s.SupportsSearching).Returns(false);
+            indexer.SetupGet(s => s.SupportsSearch).Returns(false);
 
             Mocker.GetMock<IIndexerFactory>()
                   .Setup(s => s.GetAvailableProviders())
@@ -42,10 +42,10 @@ namespace NzbDrone.Core.Test.HealthCheck.Checks
         public void should_return_ok_when_multiple_indexers_are_enabled()
         {
             var indexer1 = Mocker.GetMock<IIndexer>();
-            indexer1.SetupGet(s => s.SupportsSearching).Returns(true);
+            indexer1.SetupGet(s => s.SupportsSearch).Returns(true);
 
             var indexer2 = Mocker.GetMock<Wombles>();
-            indexer2.SetupGet(s => s.SupportsSearching).Returns(false);
+            indexer2.SetupGet(s => s.SupportsSearch).Returns(false);
 
             Mocker.GetMock<IIndexerFactory>()
                   .Setup(s => s.GetAvailableProviders())
@@ -58,7 +58,7 @@ namespace NzbDrone.Core.Test.HealthCheck.Checks
         public void should_return_ok_when_indexer_supports_searching()
         {
             var indexer1 = Mocker.GetMock<IIndexer>();
-            indexer1.SetupGet(s => s.SupportsSearching).Returns(true);
+            indexer1.SetupGet(s => s.SupportsSearch).Returns(true);
 
             Mocker.GetMock<IIndexerFactory>()
                   .Setup(s => s.GetAvailableProviders())

@@ -41,7 +41,8 @@ namespace NzbDrone.Core.Datastore
 
             Mapper.Entity<IndexerDefinition>().RegisterModel("Indexers")
                   .Ignore(i => i.Protocol)
-                  .Ignore(i => i.SupportsSearching);
+                  .Ignore(i => i.SupportsRss)
+                  .Ignore(i => i.SupportsSearch);
 
             Mapper.Entity<ScheduledTask>().RegisterModel("ScheduledTasks");
             Mapper.Entity<NotificationDefinition>().RegisterModel("Notifications");

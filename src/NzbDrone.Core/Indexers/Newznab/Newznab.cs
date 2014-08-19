@@ -196,7 +196,7 @@ namespace NzbDrone.Core.Indexers.Newznab
                        Implementation = GetType().Name,
                        Settings = settings,
                        Protocol = DownloadProtocol.Usenet,
-                       SupportsSearching = SupportsSearching
+                       SupportsSearch = SupportsSearch
                    };
         }
 
